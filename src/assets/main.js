@@ -2,7 +2,7 @@
 
 const API = 'https://youtube-v31.p.rapidapi.com/search?channelId=UCDe08Fs0s0YKJuk5h45csAQ&part=snippet%2Cid&order=date&maxResults=9';
 
-const conten = null || document.getElementById('content');
+const content = null || document.getElementById('content');
 
 const options = {
 	method: 'GET',
@@ -29,16 +29,18 @@ async function fetchData(urlApi) {
                     <img src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.description}" class="w-full">
                     </div>
                     <div class="mt-4 flex justify-between">
-                    <h3 class="text-sm text-gray-700">
-                        <span aria-hidden="true" class="absolute inset-0"></span>
-                        ${video.snippet.title}
-                    </h3>
+                    <a class="block text-gray-400 xl:inline" href="https://youtu.be/${video.id.videoId}" target="_blank">
+                        <h3 class="text-sm text-gray-700">
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            ${video.snippet.title}
+                        </h3>
+                    </a>
                 </div>
             </div>
-        `).slice(0,4).join('')}
-        
+        `).join('')}
         `;
-    } catch {
-
+        content.innerHTML = view;
+    } catch(err) {
+        console.log(err);
     }
 })();
